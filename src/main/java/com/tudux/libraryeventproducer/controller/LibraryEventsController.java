@@ -39,6 +39,23 @@ public class LibraryEventsController {
 		log.info("before sendLibraryEvent");
 		SendResult<Integer, String> sendResult = libraryEventProducer.sendLibraryEventSynchronus(libraryEvent);
 		return ResponseEntity.status(HttpStatus.CREATED).body(libraryEvent);
+	}
+	
+	@PostMapping("/v1/libraryevent/v1/async")
+	public ResponseEntity<LibraryEvent> postLibraryEventAsync1(@RequestBody LibraryEvent libraryEvent) throws JsonProcessingException, ExecutionException, InterruptedException, TimeoutException {
+		System.out.println(libraryEvent.toString());
+		//invoke kafka producer
+        //invoke kafka producer
+        libraryEventProducer.sendLibraryEventAsync1(libraryEvent);
+        return ResponseEntity.status(HttpStatus.CREATED).body(libraryEvent);
 	}	
+
+	@PostMapping("/v1/libraryevent/v2/async")
+	public ResponseEntity<LibraryEvent> postLibraryEventAsync2(@RequestBody LibraryEvent libraryEvent) throws JsonProcessingException, ExecutionException, InterruptedException, TimeoutException {
+        //invoke kafka producer
+        libraryEventProducer.sendLibraryEvent_Async2(libraryEvent);
+        return ResponseEntity.status(HttpStatus.CREATED).body(libraryEvent);
+	}	
+	
 
 }
