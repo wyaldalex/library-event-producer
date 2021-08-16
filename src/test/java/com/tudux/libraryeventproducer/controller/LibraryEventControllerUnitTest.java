@@ -55,7 +55,7 @@ public class LibraryEventControllerUnitTest {
 
     	LibraryEvent  libraryEvent = LibraryEvent.builder()
     			.libraryEventId(null)
-    			.book(book)
+    			.book(null)
     			.libraryEventType(LibraryEventType.NEW)
     			.build();
     	
